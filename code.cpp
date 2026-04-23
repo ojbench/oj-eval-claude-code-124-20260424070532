@@ -64,6 +64,10 @@ inline int read() {
     return x * f;
 }
 
+inline void write(char c) {
+    putchar(c);
+}
+
 int main() {
     int x = read();
     int k = read();
@@ -72,7 +76,7 @@ int main() {
     if (x <= 1) {
         for (int i = 0; i < p; ++i) {
             read(); read(); read();
-            printf("T\n");
+            write('T'); write('\n');
         }
         return 0;
     }
@@ -91,15 +95,15 @@ int main() {
         int r = v - 1;
 
         if (l > r) {
-            printf("T\n");
+            write('T'); write('\n');
             continue;
         }
 
         if (query(1, 1, n_segments, l, r) + n <= k) {
             update(1, 1, n_segments, l, r, n);
-            printf("T\n");
+            write('T'); write('\n');
         } else {
-            printf("N\n");
+            write('N'); write('\n');
         }
     }
 
