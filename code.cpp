@@ -70,8 +70,13 @@ inline int read() {
     return x * f;
 }
 
+char out_buf[1 << 20], *p3 = out_buf;
 inline void write_char(char c) {
-    putchar(c);
+    if (p3 == out_buf + (1 << 20)) {
+        fwrite(out_buf, 1, 1 << 20, stdout);
+        p3 = out_buf;
+    }
+    *p3++ = c;
 }
 
 int main() {
@@ -86,6 +91,7 @@ int main() {
             read(); read(); read();
             write_char('T'); write_char('\n');
         }
+        fwrite(out_buf, 1, p3 - out_buf, stdout);
         return 0;
     }
 
@@ -114,6 +120,7 @@ int main() {
             write_char('N'); write_char('\n');
         }
     }
+    fwrite(out_buf, 1, p3 - out_buf, stdout);
 
     return 0;
 }
